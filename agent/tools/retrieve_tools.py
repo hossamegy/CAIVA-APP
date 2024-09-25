@@ -12,14 +12,14 @@ embeddings = GoogleGenerativeAIEmbeddings(
     google_api_key=get_settings().API_KEY
 )
 
-paths = ["/content/agent_info.pdf"]
+paths = [r"G:\forgithub\langchain\create simple agent\pdf_source\agent_info.pdf"]
 vectorstore_agent = CreateVectorStore(paths, embeddings)
 vectorDB_agent = vectorstore_agent()
 
-paths = ["/content/user_info.pdf"]
+paths = [r"G:\forgithub\langchain\create simple agent\pdf_source\user_info.pdf"]
 vectorstore_user = CreateVectorStore(paths, embeddings)
 vectorDB_user = vectorstore_user()
-paths = ["/content/7-ch2_part2.pdf"]
+paths = [r"G:\forgithub\langchain\create simple agent\pdf_source\Lec_2.pdf"]
 vectorstore_domain = CreateVectorStore(paths, embeddings)
 vectorDB_domain = vectorstore_domain()
 
