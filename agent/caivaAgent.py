@@ -50,7 +50,7 @@ class Caiva:
         )
 
         graph.add_edge("generate", END)
-        self.g = graph.compile()
+        self.agentGraph = graph.compile()
   
     def agent(self, state):
         print('agent done')
