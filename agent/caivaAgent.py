@@ -1,17 +1,18 @@
-from tools.assistant_tools import emotions, eyes
-from tools.retrieve_tools import agent_info, user_info, book_info
-from prompts import get_generate_answer_prompt, get_grade_prompot, get_analyize_prompt
+from agent.tools.assistant_tools import emotions, eyes
+from agent.tools.retrieve_tools import agent_info, user_info, book_info
+
+from agent.prompts import get_generate_answer_prompt, get_grade_prompot, get_analyize_prompt
 from settings import get_settings
 
 from langchain_google_genai import  ChatGoogleGenerativeAI
 from langchain.pydantic_v1 import BaseModel, Field
-
 from langchain_core.messages import AIMessage
 from langgraph.graph import StateGraph, END, START
 from typing import TypedDict, Annotated, Literal
 from operator import add
 from langchain_core.messages import AIMessage, AnyMessage
 from typing import Annotated, Literal, TypedDict
+
 
 class State(TypedDict):
    messages: Annotated[list[AnyMessage], add]
@@ -48,16 +49,9 @@ class Caiva:
             self.grade_tools,
         )
 
-
-
-
         graph.add_edge("generate", END)
-
-
-
-        g = graph.compile()
-
-        
+        self.g = graph.compile()
+  
     def agent(self, state):
         print('agent done')
 
