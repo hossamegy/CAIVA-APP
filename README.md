@@ -3,7 +3,7 @@
 
 
 ## Requirements
-- Pythons 3.8 or later
+- Pythons 3.9
 #### Install Python using Anaconda
 1) Dowonload and install anacond from link -> 
 https://www.anaconda.com/download/success
