@@ -135,9 +135,13 @@ def book_info(state) -> dict:
     query = messages[0].content
     # Perform the search and handle errors
     try:
-        documents_retrieved = vectorDB_domain.similarity_search(query)
+        documents_retrieved = vectorDB_domain.similarity_search(query, k=10)
     except Exception as e:
         raise RuntimeError(f"An error occurred while querying the vector database: {e}")
     messages = messages + [AIMessage(content=format_documents(documents_retrieved))]
     # Return formatted results
+    print('##################################################################################')
+    print('befor agent')
+    print(format_documents(documents_retrieved))
+    print('##################################################################################')
     return {"messages": messages}
