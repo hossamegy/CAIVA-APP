@@ -2,6 +2,27 @@ from langchain_core.prompts import PromptTemplate
 
 def get_generate_answer_prompt():
     return PromptTemplate(
+        template="""You are given a context and a question. Follow the ReAct framework to generate an accurate answer.
+
+        Carefully analyze the provided context to understand the key details and how they relate to the question. Identify the main points and relevant information.
+        Based on your reasoning, make a precise and accurate answer to the question using the information from the context.
+
+        Intstructions:
+        1- make sure to only give me the answer only, don't add anything that precieves it  
+        2- make sure that the answer is human like
+        3- when asked about a question, try to give me detailed answer and not a briefed answer
+
+        Question: {question}
+
+        Context:
+        {context}
+
+        [Answer]
+        """,
+        input_variables=["question", "context"]
+    )
+def get_generate_answer_prompt0():
+    return PromptTemplate(
         template="""You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, say that you don't know. 
 never to make any answer or generate things from you just info from contxt
 {question}
