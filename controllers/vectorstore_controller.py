@@ -1,6 +1,6 @@
 
 from .base_controller import BaseController
-from vectorStore import VectorStoreCreator
+from agent.create_vector_store import VectorStoreCreator
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from settings import get_settings
 import os

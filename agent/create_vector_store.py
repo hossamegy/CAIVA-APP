@@ -58,7 +58,7 @@ class VectorStoreCreator:
             elif loader_type == 'json':
                 loader = JSONLoader(
                     file_path=path,
-                    jq_schema=".user_information[]",
+                    jq_schema=".",
                     text_content=False
                 )
             else:
