@@ -3,7 +3,7 @@ from typing import TypedDict, Annotated
 from operator import add
 from langchain_core.messages import AIMessage, AnyMessage
 from typing import Annotated, TypedDict
-from agent import CreateVectorStore
+from vectorStore.create_vector_store import VectorStoreCreator
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from settings import get_settings
 
@@ -12,16 +12,19 @@ embeddings = GoogleGenerativeAIEmbeddings(
     google_api_key=get_settings().API_KEY
 )
 
+vectorStore1 = VectorStoreCreator()
+
+vectorStore2 = VectorStoreCreator()
+vectorStore3 = VectorStoreCreator()
 paths = [r"asset\agent_info.pdf"]
-vectorstore_agent = CreateVectorStore(paths, embeddings)
-vectorDB_agent = vectorstore_agent()
+vectorstore_agent = vectorStore1(paths, embeddings)
 
 paths = [r"asset\user_info.pdf"]
-vectorstore_user = CreateVectorStore(paths, embeddings)
-vectorDB_user = vectorstore_user()
+vectorstore_user = vectorStore2(paths, embeddings)
+
 paths = [r"asset\Lec_2.pdf"]
-vectorstore_domain = CreateVectorStore(paths, embeddings)
-vectorDB_domain = vectorstore_domain()
+vectorstore_domain = vectorStore3(paths, embeddings)
+
 
 class InputQuery(BaseModel):
         query: str = Field(description="The query string used for searching the vector store")
