@@ -3,7 +3,7 @@ import os
 from models.enum import ResponesUploadSignal
 from fastapi import UploadFile
 from .base_controller import BaseController
-from .vectorstore_controller import VectorStoreController
+
 
 class UploadController(BaseController):
     def __init__(self):
@@ -11,17 +11,17 @@ class UploadController(BaseController):
 
     def check_validation_upload_file(self, file: UploadFile):
         if file.content_type not in self.settings.FILE_ALLOWED_TYPES:
-            return ResponesUploadSignal.FILE_TYPE_NOT_SUPPORTED
+            return ResponesUploadSignal.FILE_TYPE_NOT_SUPPORTED.value
         
         if file.size > self.settings.FILE_MAX_SIZE * 1048576:
-            return ResponesUploadSignal.FILE_SIZE_EXCEEDED
+            return ResponesUploadSignal.FILE_SIZE_EXCEEDED.value
         
-        return True, ResponesUploadSignal.FILE_UPLOAD_SUCCESS
+        return True, ResponesUploadSignal.FILE_UPLOAD_SUCCESS.value
     
-    def generate_unique_file_name(self, orignal_file_name, id):
+    def generate_unique_file_name(self, orignal_file_name):
        def generate_new_path():
             random_key = self.generate_random_string()
-            path = VectorStoreController().get_vectorstore_path(id=id)
+            path = BaseController().vectorstore_path
             clean_file_name = self.get_clean_file_name(
                 orig_file_name=orignal_file_name
             )
@@ -38,7 +38,6 @@ class UploadController(BaseController):
 
        return final_new_path, random_key
             
-    
     def get_clean_file_name(self, orig_file_name: str):
         cleaned_file_name = re.sub(r'[^\w.]', '', orig_file_name.strip())
         return cleaned_file_name.replace(' ', '_')
