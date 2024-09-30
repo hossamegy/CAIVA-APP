@@ -4,12 +4,15 @@ from langchain_core.messages import AIMessage, AnyMessage
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from settings import get_settings
+from controllers.base_controller import BaseController
 
 # Initialize embeddings
 embeddings = GoogleGenerativeAIEmbeddings(
     model=get_settings().EMBEDDING_MODEL, 
     google_api_key=get_settings().API_KEY
 )
+
+vector_store_paths = BaseController()
 
 # InputQuery model
 class InputQuery(BaseModel):
@@ -80,7 +83,7 @@ def agent_info(state: State) -> dict:
     query = messages[0].content
 
     # Query the agent info vector store
-    documents_retrieved = query_faiss(r"store\agent_info_faiss_index", query)
+    documents_retrieved = query_faiss(vector_store_paths.agent_vector_store_path, query)
 
     # Append results to messages and return
     messages.append(AIMessage(content=format_documents(documents_retrieved)))
@@ -93,7 +96,7 @@ def user_info(state: State) -> dict:
     query = messages[0].content
 
     # Query the user info vector store
-    documents_retrieved = query_faiss(r"store\user_info_faiss_index", query)
+    documents_retrieved = query_faiss(vector_store_paths.user_vector_store_path, query)
 
     # Append results to messages and return
     messages.append(AIMessage(content=format_documents(documents_retrieved)))
@@ -106,7 +109,7 @@ def book_info(state: State) -> dict:
     query = messages[0].content
 
     # Query the book info vector store
-    documents_retrieved = query_faiss(r"store\PDF_faiss_index", query, k=10)
+    documents_retrieved = query_faiss(vector_store_paths.pdf_vector_store_path, query, k=10)
 
     # Append results to messages and return
     messages.append(AIMessage(content=format_documents(documents_retrieved)))
