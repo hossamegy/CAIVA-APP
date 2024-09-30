@@ -8,19 +8,29 @@ class BaseController:
     def __init__(self):
         self.settings = get_settings()
         self.base_path =os.path.dirname(os.path.dirname(__file__))
-        self.vectorstore_path = os.path.join(
+
+        self.pdfs_path = os.path.join(
             self.base_path,
             r"store\PDFfiles"
         )
 
-        
-        self.PDF_Embeddings_path = os.path.join(
+        self.agent_vector_store_path = os.path.join(
             self.base_path,
-            r"store\PDF_Embeddings"
+            r"store\agent_info_faiss_index"
         )
-        
-        self.check_dir_exists(self.vectorstore_path)
-        self.check_dir_exists(self.PDF_Embeddings_path)
+
+        self.user_vector_store_path = os.path.join(
+            self.base_path,
+            r"store\user_info_faiss_index"
+        )
+
+        self.pdf_vector_store_path = os.path.join(
+            self.base_path,
+            r"store\pdf_faiss_index"
+        )
+
+        self.check_dir_exists(self.pdfs_path)
+
         
     def generate_random_string(self, length: int = 8):
         return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))

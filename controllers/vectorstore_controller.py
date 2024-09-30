@@ -17,9 +17,6 @@ class VectorStoreController(BaseController):
 
         vectorStoreCreator= VectorStoreCreator()
         vectorStore = vectorStoreCreator([path], embeddings, loader_type='pdf')
-        vectorStore.save_local(os.path.join(
-            self.PDF_Embeddings_path,
-            r"pdf_faiss_index"
-        ))
+        vectorStore.save_local(self.pdfs_path)
         
 

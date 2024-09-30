@@ -7,7 +7,7 @@ def return_agent_response(input: str, agent: Caiva) -> dict:
     messages = [HumanMessage(content=input)]
 
     result = agent.agentGraph.invoke({"messages": messages})
+
+
+    return  result['messages'][-1].content
     
-    return {
-        "message": result['messages'][-1].content
-    }
