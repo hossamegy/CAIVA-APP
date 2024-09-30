@@ -10,3 +10,8 @@ pypdf==5.0.0
 faiss-cpu
 aiofiles==24.1.0
 python-multipart==0.0.10
+PyAudio==0.2.14
+imageio[ffmpeg]
+ffmpeg-python
+gTTS==2.5.3
+pydub==0.25.1
