@@ -21,7 +21,7 @@ class UploadController(BaseController):
     def generate_unique_file_name(self, orignal_file_name):
        def generate_new_path():
             random_key = self.generate_random_string()
-            path = BaseController().vectorstore_path
+            path = BaseController().pdfs_path
             clean_file_name = self.get_clean_file_name(
                 orig_file_name=orignal_file_name
             )

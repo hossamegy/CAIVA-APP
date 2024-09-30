@@ -1,8 +1,4 @@
 from gtts import gTTS
-import os
-from pydub import AudioSegment
-from pydub.playback import play
-import io
 import playsound
 
 class PlaySoundController:

@@ -3,7 +3,6 @@ from .base_controller import BaseController
 from agent.create_vector_store import VectorStoreCreator
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from settings import get_settings
-import os
 
 class VectorStoreController(BaseController):
     def __init__(self):
@@ -17,6 +16,5 @@ class VectorStoreController(BaseController):
 
         vectorStoreCreator= VectorStoreCreator()
         vectorStore = vectorStoreCreator([path], embeddings, loader_type='pdf')
-        vectorStore.save_local(self.pdfs_path)
+        vectorStore.save_local(self.pdf_vector_store_path)
         
-
