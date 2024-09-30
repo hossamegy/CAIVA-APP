@@ -1,4 +1,4 @@
 from .base_controller import BaseController
 from .upload_controller import UploadController
-from .project_controller import ProjectController
 from .vectorstore_controller import VectorStoreController
+from .play_sound_controller import PlaySoundController
