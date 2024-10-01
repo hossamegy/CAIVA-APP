@@ -8,6 +8,5 @@ def return_agent_response(input: str, agent: Caiva) -> dict:
 
     result = agent.agentGraph.invoke({"messages": messages})
 
-
     return  result['messages'][-1].content
     
